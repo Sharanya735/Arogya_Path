@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Vibrant Deep Medical Blue & Emerald Theme */
+  --background: oklch(0.98 0.01 230); /* Light blue-gray tinted background */
+  --foreground: oklch(0.15 0.05 250); 
+  --card: oklch(1 0 0); /* Pure white cards */
+  --card-foreground: oklch(0.15 0.05 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.05 250);
+  --primary: oklch(0.605 0.148 245); /* Vivid Deep Blue (#0EA5E9) */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.7 0.15 160); /* Emerald Green (#10B981) */
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.95 0.02 240);
+  --muted-foreground: oklch(0.45 0.05 250);
+  --accent: oklch(0.95 0.05 245); /* Light blue highlight */
+  --accent-foreground: oklch(0.605 0.148 245);
+  --destructive: oklch(0.6 0.2 25); /* Bright Red */
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.02 240);
+  --input: oklch(0.95 0.02 240);
+  --ring: oklch(0.605 0.148 245 / 0.5);
+  --radius: 1rem; /* More rounded corners */
+}
+
+.dark {
+  --background: oklch(0.1 0.02 250); /* Deep dark blue background */
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.15 0.02 250); /* Slightly lighter dark card */
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.15 0.02 250);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.605 0.148 245); /* Vivid Deep Blue */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.7 0.15 160); /* Emerald Green */
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.2 0.02 250);
+  --muted-foreground: oklch(0.7 0.02 250);
+  --accent: oklch(0.25 0.05 245);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.25 0.02 250);
+  --input: oklch(0.25 0.02 250);
+  --ring: oklch(0.605 0.148 245 / 0.5);
+}
+
+@theme inline {
+  --font-sans: var(--font-outfit), var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Soft ambient gradient mesh */
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.08) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+/* Custom utilities for premium feel */
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-800/50 shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-white/40 dark:border-slate-800/40 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+
+  .animate-stagger-1 { animation: slideUp 0.5s ease-out 0.1s both; }
+  .animate-stagger-2 { animation: slideUp 0.5s ease-out 0.2s both; }
+  .animate-stagger-3 { animation: slideUp 0.5s ease-out 0.3s both; }
+  .animate-stagger-4 { animation: slideUp 0.5s ease-out 0.4s both; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
